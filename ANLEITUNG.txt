@@ -1,0 +1,53 @@
+ZÄHLWERK AUFS IPHONE BRINGEN
+============================
+
+Zählwerk ist eine Web-App. Sie braucht eine eigene Internetadresse (https),
+dann kannst du sie in Safari wie eine echte App auf den Home-Bildschirm legen.
+Das kostet nichts. Am einfachsten geht es mit GitHub Pages:
+
+1. Konto anlegen
+   Auf github.com ein kostenloses Konto erstellen (falls du noch keins hast).
+
+2. Neues Repository
+   Oben rechts auf "+" > "New repository".
+   Name: zaehlwerk   Sichtbarkeit: Public   > "Create repository".
+
+3. Dateien hochladen
+   Auf der neuen Seite auf "uploading an existing file" klicken.
+   Den INHALT des entpackten Ordners "zaehlwerk" hineinziehen:
+   index.html, manifest.webmanifest, sw.js und den Ordner icons.
+   Unten auf "Commit changes".
+
+4. Seite einschalten
+   Settings > Pages > Source: "Deploy from a branch",
+   Branch: main, Ordner: / (root) > Save.
+   Nach ein bis zwei Minuten steht dort deine Adresse, etwa:
+   https://DEIN-NAME.github.io/zaehlwerk/
+
+5. Auf dem iPhone installieren
+   Die Adresse in Safari öffnen > unten auf "Teilen" >
+   "Zum Home-Bildschirm" > "Hinzufügen".
+   Ab jetzt startet Zählwerk vom Home-Bildschirm ohne Browserleiste
+   und funktioniert auch ohne Netz (Karte und Live-Preise brauchen Internet).
+
+Alternative ohne GitHub: app.netlify.com/drop öffnen und den Ordner
+"zaehlwerk" in das Feld ziehen. Mit kostenlosem Netlify-Konto bleibt die
+Seite dauerhaft online.
+
+
+GUT ZU WISSEN
+-------------
+- Deine Daten liegen nur auf deinem iPhone, nicht auf einem Server.
+  Unter Garage > "Backup sichern" kannst du sie als Datei in iCloud Drive
+  ablegen und auf einem anderen Gerät wieder einspielen.
+
+- Live-Spritpreise:
+  Österreich: funktioniert ohne Anmeldung (E-Control).
+  Deutschland: kostenlosen Schlüssel auf creativecommons.tankerkoenig.de
+  holen und in der Garage unter "Live-Preise" eintragen.
+
+- Updates: Wenn du eine neue index.html hochlädst, holt sich die App
+  die neue Version beim nächsten Start mit Internet.
+
+- Beim ersten Start siehst du Beispieldaten. Mit "Mit eigenen Daten starten"
+  legst du dein Auto an und alles Beispielhafte wird gelöscht.
