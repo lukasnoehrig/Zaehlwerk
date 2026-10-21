@@ -716,6 +716,8 @@ html { background: var(--bg); }
 .zeile.stapel { flex-wrap: wrap; row-gap: 10px; padding-block: 12px; }
 .zeile.stapel .segment { flex: 0 0 calc(100% - 30px - var(--s-3)); margin-left: calc(30px + var(--s-3)); }
 
+.karte-dunkel .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.88) saturate(0.6); }
+
 </style>
 </head>
 <body>
@@ -1486,10 +1488,10 @@ const Karte = {
     if (!this.map) return;
     if (this.linie) { this.linie.setStyle({ color: token('--route-linie') }); this.linieRand.setStyle({ color: token('--route-rand') }); }
     if (this.kacheln) this.map.removeLayer(this.kacheln);
-    const stil = istDunkel() ? 'dark_all' : 'light_all';
-    this.kacheln = this.L.tileLayer(`https://{s}.basemaps.cartocdn.com/${stil}/{z}/{x}/{y}{r}.png`, {
-      subdomains: 'abcd', maxZoom: 19, crossOrigin: true,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
+    this.map.getContainer().classList.toggle('karte-dunkel', istDunkel());
+    this.kacheln = this.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, crossOrigin: true,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende',
     });
     this.kacheln.on('tileload', () => { this.kachelOk++; kartenStatus(); });
     this.kacheln.on('tileerror', () => { this.kachelFehler++; kartenStatus(); });
@@ -2361,7 +2363,7 @@ function renderGarage() {
   </section>
   <section class="abschnitt" aria-labelledby="h-ueber">
     ${kopfZeile('Über Zählwerk', 'h-ueber')}
-    <div class="karte info-karte"><span class="z-icon">${ICON.info}</span><p>Karte: OpenStreetMap-Mitwirkende, Kartenbilder von CARTO. Routen: OSRM. Adresssuche: Photon von komoot. Spritpreise: Tankerkönig (MTS-K, CC BY 4.0) und E-Control. CO₂-Werte sind Näherungen (Benzin 2,37 kg, Diesel 2,65 kg je Liter). Alle Steuerangaben ohne Gewähr.</p></div>
+    <div class="karte info-karte"><span class="z-icon">${ICON.info}</span><p>Karte und Kartenbilder: OpenStreetMap-Mitwirkende. Routen: OSRM. Adresssuche: Photon von komoot. Spritpreise: Tankerkönig (MTS-K, CC BY 4.0) und E-Control. CO₂-Werte sind Näherungen (Benzin 2,37 kg, Diesel 2,65 kg je Liter). Alle Steuerangaben ohne Gewähr.</p></div>
   </section>`;
 
   $$('[data-setting]', v).forEach((inp) => {

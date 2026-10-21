@@ -1,5 +1,5 @@
 /* Zählwerk Service Worker: App offline verfügbar, Kartenbilder werden zwischengespeichert. */
-const VERSION = 'zaehlwerk-v2';
+const VERSION = 'zaehlwerk-v3';
 const KACHELN = 'zaehlwerk-kacheln';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 
@@ -54,7 +54,7 @@ self.addEventListener('fetch', (e) => {
   }
 
   // Kartenbilder: zwischenspeichern, höchstens 500 Stück
-  if (url.hostname.endsWith('basemaps.cartocdn.com')) {
+  if (url.hostname === 'tile.openstreetmap.org') {
     e.respondWith(
       caches.open(KACHELN).then(async (cache) => {
         const hit = await cache.match(req);
